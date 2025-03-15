@@ -46,7 +46,7 @@ const Home: React.FC = () => {
       const tx = await contract.sendMessage(receiver, message);
 
       const receipt = await tx.wait();
-
+      console.log(receipt);
       alert("Message sent successfully!");
     } catch (error) {
       console.error("Error sending message:", error);

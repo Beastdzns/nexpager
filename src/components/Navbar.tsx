@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useWeb3 } from "../context/Web3Context";
-import { WalletComponents } from "./Wallet";
 const Navbar: React.FC = () => {
   const { account, connectWallet, disconnectWallet } = useWeb3();
 
@@ -25,7 +24,7 @@ const Navbar: React.FC = () => {
       <div className="animate-slideIn" style={{animationDelay: '200ms'}}>
         {account ? (
           <div className="flex items-center space-x-4">
-            <span className="bg-white bg-opacity-10 backdrop-blur-sm text-white px-3 py-1 rounded-full border border-white border-opacity-20">{account.slice(0, 6)}...{account.slice(-4)}</span>
+            <span className="bg-opacity-10 backdrop-blur-sm text-white px-3 py-1 rounded-full border border-white border-opacity-20">{account.slice(0, 6)}...{account.slice(-4)}</span>
             <button onClick={disconnectWallet} className="px-4 py-2 bg-gradient-to-r from-red-400 to-red-500 hover:from-red-500 hover:to-red-600 text-white rounded-full shadow-lg transition-all duration-300 hover:shadow-pink-500/30 hover:scale-105">Disconnect</button>
           </div>
         ) : (

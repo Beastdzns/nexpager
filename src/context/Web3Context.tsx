@@ -1,5 +1,3 @@
-// context/Web3Context.tsx
-
 import React, { createContext, useState, useEffect, ReactNode } from "react";
 import { ethers } from "ethers";
 

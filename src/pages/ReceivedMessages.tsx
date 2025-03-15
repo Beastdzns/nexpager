@@ -49,7 +49,7 @@ const ReceivedMessages: React.FC = () => {
 
   const sendMessageToESP32 = async (message: string) => {
     try {
-      const response = await fetch("http://<ESP32_IP>/sendMessage", {
+      const response = await fetch("http://localhost:4000/sendMessage", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -76,31 +76,30 @@ const ReceivedMessages: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div className="p-6 bg-gray-100 border-4 border-black shadow-brutal text-center">
-        <h2 className="text-xl font-bold mb-4">Received Messages</h2>
+      <div className="p-8 bg-gradient-to-br from-purple-50 to-green-50 rounded-xl shadow-lg max-w-4xl mx-auto mt-8">
+        <h2 className="text-2xl font-bold mb-6 text-purple-800 text-center">Received Messages</h2>
 
         <button
           onClick={fetchMessages}
-          className={`mt-4 px-6 py-2 bg-white border-2 border-black shadow-brutal transition ${
-            loading ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-200"
-          }`}
+          className={`mx-auto block mt-4 px-6 py-2 bg-gradient-to-r from-purple-600 to-green-500 text-white font-medium rounded-lg shadow-md transition duration-300 ${loading ? "opacity-50 cursor-not-allowed" : "hover:shadow-lg transform hover:-translate-y-1"
+            }`}
           disabled={loading}
         >
           {loading ? "Fetching..." : "Fetch Messages"}
         </button>
 
-        {error && <p className="text-red-500 mt-4">{error}</p>}
+        {error && <p className="text-red-500 mt-4 text-center">{error}</p>}
 
-        <div className="mt-6">
+        <div className="mt-8 space-y-4">
           {messages.length > 0 ? (
             messages.map((msg, index) => (
-              <p key={index} className="bg-white p-2 border-2 border-black shadow-brutal my-2">
-                <strong>From:</strong> {msg.sender} <br />
-                <strong>Message:</strong> {msg.message}
-              </p>
+              <div key={index} className="bg-white p-4 rounded-lg shadow-md border-l-4 border-purple-500">
+                <p className="text-sm text-purple-700 mb-1">From: <span className="font-semibold">{msg.sender}</span></p>
+                <p className="text-green-800 bg-green-50 p-3 rounded-md mt-2">{msg.message}</p>
+              </div>
             ))
           ) : (
-            !loading && <p className="text-gray-600">No messages available.</p>
+            !loading && <p className="text-gray-500 text-center italic">No messages available.</p>
           )}
         </div>
       </div>

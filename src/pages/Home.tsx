@@ -54,28 +54,44 @@ const Home: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-gray-100">
       <Navbar />
-      <div className="p-6 bg-gray-100 border-4 border-black shadow-brutal text-center">
-        <h2 className="text-xl font-bold mb-4">Send a Message</h2>
-        <input
-          type="text"
-          placeholder="Receiver Address"
-          className="block w-3/4 mx-auto p-2 border-2 border-black shadow-brutal"
-          value={receiver}
-          onChange={(e) => setReceiver(e.target.value)}
-        />
-        <textarea
-          placeholder="Message"
-          className="block w-3/4 mx-auto p-2 border-2 border-black shadow-brutal mt-2"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <button onClick={sendMessage} className="mt-4 px-6 py-2 bg-white border-2 border-black shadow-brutal">
-          Send
-        </button>
+      <div className="container mx-auto px-4 py-12">
+      <div className="max-w-md mx-auto bg-white shadow-lg rounded-xl p-8 border border-gray-200">
+      <h2 className="text-3xl font-bold mb-6 text-purple-800 text-center">Send a Message</h2>
+      
+      <div className="space-y-5">
+      <div>
+      <label className="block text-gray-700 mb-2 text-sm font-medium">Recipient Address</label>
+      <input
+      type="text"
+      placeholder="0x..."
+      className="w-full p-3 bg-gray-100 border border-gray-300 rounded-lg text-gray-800 focus:ring-2 focus:ring-purple-400 focus:border-transparent transition"
+      value={receiver}
+      onChange={(e) => setReceiver(e.target.value)}
+      />
       </div>
-    </>
+      
+      <div>
+      <label className="block text-gray-700 mb-2 text-sm font-medium">Your Message</label>
+      <textarea
+      placeholder="Type your message here..."
+      className="w-full p-3 bg-gray-100 border border-gray-300 rounded-lg h-32 text-gray-800 focus:ring-2 focus:ring-purple-400 focus:border-transparent transition"
+      value={message}
+      onChange={(e) => setMessage(e.target.value)}
+      />
+      </div>
+      
+      <button 
+      onClick={sendMessage} 
+      className="w-full py-3 px-6 bg-gradient-to-r from-purple-500 to-purple-700 text-white font-medium rounded-lg hover:from-purple-600 hover:to-purple-800 transform hover:-translate-y-1 transition duration-300 shadow-lg"
+      >
+      Send Message
+      </button>
+      </div>
+      </div>
+      </div>
+    </div>
   );
 };
 

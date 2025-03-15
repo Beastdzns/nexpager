@@ -1,7 +1,6 @@
 import { SelfAppBuilder, SelfQRcode } from '@selfxyz/qrcode';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
-
 // Generate a unique user ID
 const userId = uuidv4();
 
@@ -34,6 +33,7 @@ const selfApp = new SelfAppBuilder({
 const Self: React.FC = () => {
     const navigate = useNavigate();
     return (
+        <>
         <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
             <div className="text-center">
                 <h1 className="text-4xl font-bold mb-6 glow-text">QR Code Verification</h1>
@@ -49,6 +49,7 @@ const Self: React.FC = () => {
                 />
             </div>
         </div>
+        </>
     );
 }
 

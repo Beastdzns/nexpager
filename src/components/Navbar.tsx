@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useWeb3 } from "../context/Web3Context";
-
+import { WalletComponents } from "./Wallet";
 const Navbar: React.FC = () => {
   const { account, connectWallet, disconnectWallet } = useWeb3();
 
@@ -22,6 +22,7 @@ const Navbar: React.FC = () => {
           <button onClick={connectWallet} className="px-4 py-2 bg-green-500 border-2 border-black shadow-brutal">Connect Wallet</button>
         )}
       </div>
+      <WalletComponents />
     </nav>
   );
 };

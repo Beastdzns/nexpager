@@ -5,7 +5,6 @@ import { baseSepolia } from 'wagmi/chains';
 import { coinbaseWallet } from 'wagmi/connectors';
 import Home from "./pages/Home";
 import Self from "./pages/Self";
-import Onchain from "./pages/Onchain";
 import ReceivedMessages from "./pages/ReceivedMessages";
 import { Web3Provider } from "./context/Web3Context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -31,8 +30,7 @@ const App = ({ children }: { children: ReactNode }) => {
       <Web3Provider>
         <Router>
         <Routes>
-          <Route path='/' element={<Onchain />} />
-          <Route path="/verify" element={<Self />} />
+          <Route path="/" element={<Self />} />
           <Route path="/home" element={<Home />} />
           <Route path="/received" element={<ReceivedMessages />} />
         </Routes>

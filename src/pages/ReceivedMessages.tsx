@@ -28,10 +28,16 @@ const ReceivedMessages: React.FC = () => {
       if (!fetchedMessages || fetchedMessages.length === 0) {
         setError("No messages found.");
       } else {
-        setMessages(fetchedMessages.map((msg: any) => ({
+        const newMessages = fetchedMessages.map((msg: any) => ({
           sender: msg.sender,
-          message: msg.message
-        })));
+          message: msg.message,
+        }));
+
+        // Update the state with the new messages
+        setMessages(newMessages);
+
+        // Send the latest message to the ESP32
+        sendMessageToESP32(newMessages[0].message);
       }
     } catch (error) {
       console.error("Error fetching messages:", error);
@@ -39,6 +45,26 @@ const ReceivedMessages: React.FC = () => {
     }
 
     setLoading(false);
+  };
+
+  const sendMessageToESP32 = async (message: string) => {
+    try {
+      const response = await fetch("http://<ESP32_IP>/sendMessage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message to ESP32.");
+      }
+
+      console.log("Message sent to ESP32:", message);
+    } catch (error) {
+      console.error("Error sending message to ESP32:", error);
+    }
   };
 
   useEffect(() => {
